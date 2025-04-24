@@ -4,117 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prado Bolsas</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-
-        body {
-
-            font-family: Arial, sans-serif;
-
-            margin: 0;
-
-            padding: 0;
-
-        }
-
-        header {
-
-            background-color: #5a3825;
-
-            color: white;
-
-            padding: 20px;
-
-            text-align: center;
-
-        }
-
-        nav {
-
-            background-color: #d1bfa3;
-
-            display: flex;
-
-            justify-content: center;
-
-            padding: 10px 0;
-
-        }
-
-        nav a {
-
-            color: #5a3825;
-
-            text-decoration: none;
-
-            margin: 0 15px;
-
-            font-weight: bold;
-
-        }
-
-        nav a:hover {
-
-            text-decoration: underline;
-
-        }
-
-        section {
-
-            padding: 30px;
-
-            text-align: center;
-
-        }
-
-        .produtos {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            justify-content: center;
-
-            gap: 20px;
-
-        }
-
-        .produto {
-
-            border: 1px solid #ccc;
-
-            border-radius: 8px;
-
-            width: 250px;
-
-            padding: 15px;
-
-        }
-
-        .produto img {
-
-            width: 100%;
-
-            border-radius: 5px;
-
-        }
-
-        footer {
-
-            background-color: #5a3825;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 15px;
-
-            position: relative;
-
-            bottom: 0;
-
-            width: 100%;
-
-        }
+       body {
+           font-family: 'Poppins', sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #fef9f4;
+           color: #3c2c1e;
+       }
+       header {
+           background-color: #5a3825;
+           color: white;
+           padding: 20px;
+           text-align: center;
+       }
+       nav {
+           background-color: #e4cba3;
+           display: flex;
+           justify-content: center;
+           padding: 10px 0;
+       }
+       nav a {
+           color: #5a3825;
+           text-decoration: none;
+           margin: 0 15px;
+           font-weight: 600;
+       }
+       nav a:hover {
+           text-decoration: underline;
+       }
+       section {
+           padding: 30px;
+           text-align: center;
+       }
+       .produtos {
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 20px;
+       }
+       .produto {
+           border: 1px solid #ccc;
+           border-radius: 8px;
+           width: 250px;
+           padding: 15px;
+           background-color: white;
+           box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+       }
+       .produto img {
+           width: 100%;
+           border-radius: 5px;
+       }
+       footer {
+           background-color: #5a3825;
+           color: white;
+           text-align: center;
+           padding: 15px;
+       }
+       /* Botão do WhatsApp */
+       .whatsapp-btn {
+           position: fixed;
+           bottom: 20px;
+           right: 20px;
+           background-color: #25D366;
+           color: white;
+           padding: 15px 18px;
+           border-radius: 50%;
+           font-size: 20px;
+           box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+           text-decoration: none;
+           z-index: 1000;
+       }
+       .whatsapp-btn:hover {
+           background-color: #1ebe57;
+       }
 </style>
 </head>
 <body>
@@ -155,10 +119,14 @@
 <h2>Fale Conosco</h2>
 <p>Email: contato@pradobolsas.com.br</p>
 <p>Telefone: (11) 99999-9999</p>
-<p>Instagram: @pradobolsas</p>
+<p>Instagram: <a href="https://instagram.com/pradobolsas" target="_blank">@pradobolsas</a></p>
 </section>
 <footer>
 &copy; 2025 Prado Bolsas. Todos os direitos reservados.
 </footer>
+<!-- Botão do WhatsApp -->
+<a class="whatsapp-btn" href="https://wa.me/5511934190720?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Prado%20Bolsas" target="_blank">
+&#128222;
+</a>
 </body>
-</html> 
+</html>
