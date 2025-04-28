@@ -6,79 +6,82 @@
 <title>Prado Bolsas</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-       body {
-           font-family: 'Poppins', sans-serif;
-           margin: 0;
-           padding: 0;
-           background-color: #fef9f4;
-           color: #3c2c1e;
-       }
-       header {
-           background-color: #5a3825;
-           color: white;
-           padding: 20px;
-           text-align: center;
-       }
-       nav {
-           background-color: #e4cba3;
-           display: flex;
-           justify-content: center;
-           padding: 10px 0;
-       }
-       nav a {
-           color: #5a3825;
-           text-decoration: none;
-           margin: 0 15px;
-           font-weight: 600;
-       }
-       nav a:hover {
-           text-decoration: underline;
-       }
-       section {
-           padding: 30px;
-           text-align: center;
-       }
-       .produtos {
-           display: flex;
-           flex-wrap: wrap;
-           justify-content: center;
-           gap: 20px;
-       }
-       .produto {
-           border: 1px solid #ccc;
-           border-radius: 8px;
-           width: 250px;
-           padding: 15px;
-           background-color: white;
-           box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-       }
-       .produto img {
-           width: 100%;
-           border-radius: 5px;
-       }
-       footer {
-           background-color: #5a3825;
-           color: white;
-           text-align: center;
-           padding: 15px;
-       }
-       /* Botão do WhatsApp */
-       .whatsapp-btn {
-           position: fixed;
-           bottom: 20px;
-           right: 20px;
-           background-color: #25D366;
-           color: white;
-           padding: 15px 18px;
-           border-radius: 50%;
-           font-size: 20px;
-           box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-           text-decoration: none;
-           z-index: 1000;
-       }
-       .whatsapp-btn:hover {
-           background-color: #1ebe57;
-       }
+      body {
+          font-family: 'Poppins', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #fef9f4;
+          color: #3c2c1e;
+      }
+      header {
+          background-color: #5a3825;
+          color: white;
+          padding: 20px;
+          text-align: center;
+      }
+      nav {
+          background-color: #e4cba3;
+          display: flex;
+          justify-content: center;
+          padding: 10px 0;
+      }
+      nav a {
+          color: #5a3825;
+          text-decoration: none;
+          margin: 0 15px;
+          font-weight: 600;
+      }
+      nav a:hover {
+          text-decoration: underline;
+      }
+      section {
+          padding: 30px;
+          text-align: center;
+      }
+      .produtos {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+      }
+      .produto {
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          width: 250px;
+          padding: 15px;
+          background-color: white;
+          box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+          transition: transform 0.3s;
+      }
+      .produto:hover {
+          transform: scale(1.05);
+      }
+      .produto img {
+          width: 100%;
+          border-radius: 5px;
+      }
+      footer {
+          background-color: #5a3825;
+          color: white;
+          text-align: center;
+          padding: 15px;
+      }
+      .whatsapp-btn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #25D366;
+          color: white;
+          padding: 15px 18px;
+          border-radius: 50%;
+          font-size: 20px;
+          box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+          text-decoration: none;
+          z-index: 1000;
+      }
+      .whatsapp-btn:hover {
+          background-color: #1ebe57;
+      }
 </style>
 </head>
 <body>
@@ -89,7 +92,7 @@
 </header>
 <nav>
 <a href="#sobre">Sobre</a>
-<a href="produtos.html">Produtos</a>
+<a href="#produtos">Produtos</a>
 <a href="#contato">Contato</a>
 </nav>
 <section id="sobre">
@@ -99,21 +102,27 @@
 <section id="produtos">
 <h2>Nossos Produtos</h2>
 <div class="produtos">
+<a href="bolsa.html" style="text-decoration: none; color: inherit;">
 <div class="produto">
 <img src="https://via.placeholder.com/250x200.png?text=Bolsa+de+Couro" alt="Bolsa de Couro">
 <h3>Bolsa de Couro</h3>
 <p>Elegante e resistente. Ideal para o dia a dia.</p>
 </div>
+</a>
+<a href="mochila.html" style="text-decoration: none; color: inherit;">
 <div class="produto">
 <img src="https://via.placeholder.com/250x200.png?text=Mochila+de+Couro" alt="Mochila de Couro">
 <h3>Mochila de Couro</h3>
 <p>Design moderno com espaço para tudo que você precisa.</p>
 </div>
+</a>
+<a href="carteira.html" style="text-decoration: none; color: inherit;">
 <div class="produto">
 <img src="https://via.placeholder.com/250x200.png?text=Carteira+de+Couro" alt="Carteira de Couro">
 <h3>Carteira de Couro</h3>
 <p>Compacta e prática, com acabamento premium.</p>
 </div>
+</a>
 </div>
 </section>
 <section id="contato">
@@ -125,7 +134,6 @@
 <footer>
 &copy; 2025 Prado Bolsas. Todos os direitos reservados.
 </footer>
-<!-- Botão do WhatsApp -->
 <a class="whatsapp-btn" href="https://wa.me/5511934190720?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Prado%20Bolsas" target="_blank">
 &#128222;
 </a>
