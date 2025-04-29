@@ -82,11 +82,11 @@
 <body>
   <header>
     <h1>Prado Bolsas</h1>
-    <p>Pedido de Mochila de Couro</p>
+    <p>Pedido de Mochila</p>
   </header>
 
   <div class="container">
-    <img src="fotos/mochila.jpg" alt="Mochila de Couro">
+    <img src="fotos/mochila.jpg" alt="Mochila">
 
     <div class="mensagem-atacado">
       Acima de 6 peças o preço é de atacado!
@@ -105,11 +105,9 @@
       <label for="cor">Cor:</label>
       <select id="cor" required>
         <option value="">Selecione</option>
-        <option>Marrom Claro</option>
         <option>Preto</option>
-        <option>Marrom Café</option>
-        <option>Rosa</option>
-        <option>Azul</option>
+        <option>Marrom</option>
+        <option>Bege</option>
       </select>
 
       <label for="tamanho">Tamanho:</label>
@@ -118,7 +116,6 @@
         <option>P</option>
         <option>M</option>
         <option>G</option>
-        <option>GG</option>
       </select>
 
       <label for="quantidade">Quantidade:</label>
@@ -134,6 +131,17 @@
   </div>
 
   <script>
+    const cadastro = JSON.parse(localStorage.getItem('cadastroCliente'));
+    if (!cadastro) {
+      window.location.href = 'cadastro.html';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('nome').value = cadastro.nome;
+      document.getElementById('cep').value = cadastro.cep;
+      document.getElementById('endereco').value = cadastro.endereco;
+    });
+
     function adicionarAoCarrinho() {
       const nome = document.getElementById('nome').value;
       const cep = document.getElementById('cep').value;
@@ -148,14 +156,21 @@
         return;
       }
 
-      const precoVarejo = {P: 200, M: 200, G: 350, GG: 350};
-      const precoAtacado = {P: 150, M: 170, G: 180, GG: 180};
+      let precoUnitario = 0;
+      if (quantidade >= 6) {
+        if (tamanho === "P") precoUnitario = 230;
+        else if (tamanho === "M") precoUnitario = 300;
+        else if (tamanho === "G") precoUnitario = 350;
+      } else {
+        if (tamanho === "P") precoUnitario = 300;
+        else if (tamanho === "M") precoUnitario = 350;
+        else if (tamanho === "G") precoUnitario = 400;
+      }
 
-      const precoUnitario = quantidade >= 6 ? precoAtacado[tamanho] : precoVarejo[tamanho];
       const precoTotal = precoUnitario * quantidade;
 
       const item = {
-        produto: "Mochila de Couro",
+        produto: "Mochila",
         cor,
         tamanho,
         quantidade,
