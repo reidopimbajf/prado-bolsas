@@ -1,168 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pedido de Porta Chuteira - Prado Bolsas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fef9f4;
-      color: #3c2c1e;
-    }
-    header {
-      background-color: #5a3825;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      padding: 30px;
-      max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-      margin-top: 30px;
-    }
-    img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: 600;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: 'Poppins', sans-serif;
-    }
-    button {
-      background-color: #5a3825;
-      color: white;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #3c2619;
-    }
-    .mensagem-atacado {
-      background-color: #fff7e6;
-      border: 1px solid #ffcc80;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      color: #a66a00;
-      font-weight: bold;
-      text-align: center;
-    }
-    a.voltar {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #5a3825;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pedido de Porta Chuteira - Prado Bolsas</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+   body {
+     font-family: 'Poppins', sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #fef9f4;
+     color: #3c2c1e;
+   }
+   header {
+     background-color: #5a3825;
+     color: white;
+     padding: 20px;
+     text-align: center;
+   }
+   .container {
+     padding: 30px;
+     max-width: 500px;
+     margin: 0 auto;
+     background: white;
+     border-radius: 8px;
+     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+     margin-top: 30px;
+   }
+   img {
+     width: 100%;
+     border-radius: 8px;
+     margin-bottom: 20px;
+   }
+   label {
+     display: block;
+     margin: 10px 0 5px;
+     font-weight: 600;
+   }
+   input, select, textarea {
+     width: 100%;
+     padding: 8px;
+     margin-bottom: 15px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     font-family: 'Poppins', sans-serif;
+   }
+   button {
+     background-color: #5a3825;
+     color: white;
+     padding: 10px;
+     width: 100%;
+     border: none;
+     border-radius: 4px;
+     font-size: 16px;
+     cursor: pointer;
+   }
+   button:hover {
+     background-color: #3c2619;
+   }
+   .mensagem-atacado {
+     background-color: #fff7e6;
+     border: 1px solid #ffcc80;
+     padding: 10px;
+     margin-bottom: 20px;
+     border-radius: 5px;
+     color: #a66a00;
+     font-weight: bold;
+     text-align: center;
+   }
+   a.voltar {
+     display: block;
+     text-align: center;
+     margin-top: 20px;
+     color: #5a3825;
+     text-decoration: none;
+     font-weight: 600;
+   }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Prado Bolsas</h1>
-    <p>Pedido de Porta Chuteira</p>
-  </header>
-
-  <div class="container">
-    <img src="fotos/portachuteira.jpg" alt="Porta Chuteira">
-
-    <div class="mensagem-atacado">
-      Acima de 6 peças o preço é de atacado!
-    </div>
-
-    <form id="pedidoForm">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" required>
-
-      <label for="cep">CEP:</label>
-      <input type="text" id="cep" required>
-
-      <label for="endereco">Endereço:</label>
-      <input type="text" id="endereco" required>
-
-      <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" min="1" value="1" required>
-
-      <label for="observacoes">Observações:</label>
-      <textarea id="observacoes" rows="3"></textarea>
-
-      <button type="button" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
-    </form>
-
-    <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
-  </div>
-
-  <script>
-    const cadastro = JSON.parse(localStorage.getItem('cadastroCliente'));
-    if (!cadastro) {
-      window.location.href = 'cadastro.html';
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('nome').value = cadastro.nome;
-      document.getElementById('cep').value = cadastro.cep;
-      document.getElementById('endereco').value = cadastro.endereco;
-    });
-
-    function adicionarAoCarrinho() {
-      const nome = document.getElementById('nome').value;
-      const cep = document.getElementById('cep').value;
-      const endereco = document.getElementById('endereco').value;
-      const quantidade = parseInt(document.getElementById('quantidade').value);
-      const observacoes = document.getElementById('observacoes').value;
-
-      if (!nome || !cep || !endereco || quantidade < 1) {
-        alert("Preencha todos os campos corretamente.");
-        return;
-      }
-
-      let precoUnitario = 0;
-      if (quantidade >= 6) {
-        precoUnitario = 100;
-      } else {
-        precoUnitario = 130;
-      }
-
-      const precoTotal = precoUnitario * quantidade;
-
-      const item = {
-        produto: "Porta Chuteira",
-        quantidade,
-        precoTotal,
-        nome,
-        cep,
-        endereco,
-        observacoes
-      };
-
-      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-      carrinho.push(item);
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-      window.location.href = 'carrinho.html';
-    }
-  </script>
+<header>
+<h1>Prado Bolsas</h1>
+<p>Pedido de Porta Chuteira</p>
+</header>
+<div class="container">
+<img src="fotos/portachuteira.jpg" alt="Porta Chuteira">
+<div class="mensagem-atacado">
+     Acima de 6 peças o preço é de atacado!
+</div>
+<form id="pedidoForm">
+<label for="nome">Nome:</label>
+<input type="text" id="nome" required>
+<label for="cep">CEP:</label>
+<input type="text" id="cep" required>
+<label for="endereco">Endereço:</label>
+<input type="text" id="endereco" required>
+<label for="quantidade">Quantidade:</label>
+<input type="number" id="quantidade" min="1" value="1" required>
+<label for="observacoes">Observações:</label>
+<textarea id="observacoes" rows="3"></textarea>
+<button type="button" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+</form>
+<a class="voltar" href="index.html">← Voltar para o Catálogo</a>
+</div>
+<script>
+   const cadastro = JSON.parse(localStorage.getItem('usuarioLogado'));
+   if (!cadastro) {
+     window.location.href = 'login.html';
+   }
+   document.addEventListener("DOMContentLoaded", () => {
+     document.getElementById('nome').value = cadastro.nome || '';
+     document.getElementById('cep').value = cadastro.cep || '';
+     document.getElementById('endereco').value = cadastro.endereco || '';
+   });
+   function adicionarAoCarrinho() {
+     const nome = document.getElementById('nome').value;
+     const cep = document.getElementById('cep').value;
+     const endereco = document.getElementById('endereco').value;
+     const quantidade = parseInt(document.getElementById('quantidade').value);
+     const observacoes = document.getElementById('observacoes').value;
+     if (!nome || !cep || !endereco || quantidade < 1) {
+       alert("Preencha todos os campos corretamente.");
+       return;
+     }
+     let precoUnitario = 0;
+     if (quantidade >= 6) {
+       precoUnitario = 100;
+     } else {
+       precoUnitario = 130;
+     }
+     const precoTotal = precoUnitario * quantidade;
+     const item = {
+       produto: "Porta Chuteira",
+       quantidade,
+       precoTotal,
+       nome,
+       cep,
+       endereco,
+       observacoes
+     };
+     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+     carrinho.push(item);
+     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+     window.location.href = 'carrinho.html';
+   }
+</script>
 </body>
 </html>
