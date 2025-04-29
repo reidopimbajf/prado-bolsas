@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cadastro - Prado Bolsas</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -49,13 +49,29 @@
     button:hover {
       background-color: #3c2619;
     }
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .link a {
+      text-decoration: none;
+      color: #5a3825;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Cadastro</h1>
+
     <label for="nome">Nome:</label>
     <input type="text" id="nome" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" required>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" required>
 
     <label for="cep">CEP:</label>
     <input type="text" id="cep" required>
@@ -63,24 +79,48 @@
     <label for="endereco">Endereço:</label>
     <input type="text" id="endereco" required>
 
-    <button onclick="salvarCadastro()">Salvar e Ir para o Catálogo</button>
+    <label for="numero">Número:</label>
+    <input type="text" id="numero" required>
+
+    <label for="complemento">Complemento:</label>
+    <input type="text" id="complemento">
+
+    <button onclick="salvarCadastro()">Cadastrar</button>
+
+    <div class="link">
+      <p>Já tem conta? <a href="login.html">Faça login</a></p>
+    </div>
   </div>
 
   <script>
     function salvarCadastro() {
       const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
       const cep = document.getElementById('cep').value;
       const endereco = document.getElementById('endereco').value;
+      const numero = document.getElementById('numero').value;
+      const complemento = document.getElementById('complemento').value;
 
-      if (!nome || !cep || !endereco) {
-        alert("Por favor, preencha todos os campos.");
+      if (!nome || !email || !senha || !cep || !endereco || !numero) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
         return;
       }
 
-      const cadastro = { nome, cep, endereco };
-      localStorage.setItem('cadastroCliente', JSON.stringify(cadastro));
+      const novoUsuario = { nome, email, senha, cep, endereco, numero, complemento };
 
-      window.location.href = "index.html";
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const existe = usuarios.some(u => u.email === email);
+      if (existe) {
+        alert("Este e-mail já está cadastrado.");
+        return;
+      }
+
+      usuarios.push(novoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+      alert("Cadastro realizado com sucesso!");
+
+      window.location.href = "login.html";
     }
   </script>
 </body>
