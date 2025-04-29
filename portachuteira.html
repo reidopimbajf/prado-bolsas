@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pedido de Porta Chuteira - Prado Bolsas</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -27,6 +27,11 @@
       border-radius: 8px;
       box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
       margin-top: 30px;
+    }
+    img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
     }
     label {
       display: block;
@@ -54,6 +59,16 @@
     button:hover {
       background-color: #3c2619;
     }
+    .mensagem-atacado {
+      background-color: #fff7e6;
+      border: 1px solid #ffcc80;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      color: #a66a00;
+      font-weight: bold;
+      text-align: center;
+    }
     a.voltar {
       display: block;
       text-align: center;
@@ -71,9 +86,12 @@
   </header>
 
   <div class="container">
-    <p style="background-color: #fff4d2; padding: 10px; border-left: 5px solid #f2b705; border-radius: 4px; margin-bottom: 20px;">
-<strong>Atenção:</strong> A partir de 6 peças, você paga o valor de <strong>atacado</strong>!
-</p>
+    <img src="fotos/portachuteira.jpg" alt="Porta Chuteira">
+
+    <div class="mensagem-atacado">
+      Acima de 6 peças o preço é de atacado!
+    </div>
+
     <form id="pedidoForm">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" required>
@@ -90,7 +108,6 @@
         <option>Preto</option>
         <option>Marrom</option>
         <option>Azul</option>
-        <option>Vermelho</option>
       </select>
 
       <label for="quantidade">Quantidade:</label>
@@ -99,32 +116,46 @@
       <label for="observacoes">Observações:</label>
       <textarea id="observacoes" rows="3"></textarea>
 
-      <button type="submit">Enviar Pedido via WhatsApp</button>
+      <button type="button" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
     </form>
 
     <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
   </div>
 
   <script>
-    document.getElementById('pedidoForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+    function adicionarAoCarrinho() {
+      const nome = document.getElementById('nome').value;
+      const cep = document.getElementById('cep').value;
+      const endereco = document.getElementById('endereco').value;
+      const cor = document.getElementById('cor').value;
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+      const observacoes = document.getElementById('observacoes').value;
 
-      var nome = document.getElementById('nome').value;
-      var cep = document.getElementById('cep').value;
-      var endereco = document.getElementById('endereco').value;
-      var cor = document.getElementById('cor').value;
-      var quantidade = parseInt(document.getElementById('quantidade').value);
-      var observacoes = document.getElementById('observacoes').value;
+      if (!nome || !cep || !endereco || !cor || quantidade < 1) {
+        alert("Preencha todos os campos corretamente.");
+        return;
+      }
 
-      // Preço
-      var precoUnitario = quantidade >= 6 ? 85 : 130;
-      var precoTotal = precoUnitario * quantidade;
+      const precoUnitario = quantidade >= 6 ? 100 : 130;
+      const precoTotal = precoUnitario * quantidade;
 
-      var mensagem = `Olá, gostaria de fazer um pedido!\n\nProduto: Porta Chuteira\nCor: ${cor}\nQuantidade: ${quantidade}\nValor Unitário: R$ ${precoUnitario}\nValor Total: R$ ${precoTotal}\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
+      const item = {
+        produto: "Porta Chuteira",
+        cor,
+        quantidade,
+        precoTotal,
+        nome,
+        cep,
+        endereco,
+        observacoes
+      };
 
-      var url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
-      window.open(url, '_blank');
-    });
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      carrinho.push(item);
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+      window.location.href = 'carrinho.html';
+    }
   </script>
 </body>
 </html>
