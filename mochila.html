@@ -79,8 +79,8 @@
 <form id="pedidoForm">
 <label for="nome">Nome:</label>
 <input type="text" id="nome" required>
-<label for="whatsapp">WhatsApp:</label>
-<input type="tel" id="whatsapp" required>
+<label for="endereco">Endereço:</label>
+<input type="tel" id="Endereço" required>
 <label for="cor">Cor:</label>
 <select id="cor" required>
 <option value="">Selecione</option>
@@ -110,7 +110,7 @@
 document.getElementById('pedidoForm').addEventListener('submit', function(event) {
  event.preventDefault();
  var nome = document.getElementById('nome').value;
- var whatsapp = document.getElementById('whatsapp').value;
+ var endereco = document.getElementById('endereco').value;
  var cor = document.getElementById('cor').value;
  var tamanho = document.getElementById('tamanho').value;
  var quantidade = document.getElementById('quantidade').value;
