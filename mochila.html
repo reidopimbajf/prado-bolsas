@@ -76,7 +76,8 @@
 </header>
 
 <div class="container">
-<img src="fotos/mochila1.jpeg" alt="Mochila de Couro">
+<img src="fotos/mochila.jpg" alt="Mochila de Couro">
+
 <form id="pedidoForm">
 <label for="nome">Nome:</label>
 <input type="text" id="nome" required>
@@ -120,36 +121,27 @@
 
 <script>
 document.getElementById('pedidoForm').addEventListener('submit', function(event) {
- event.preventDefault();
+  event.preventDefault();
+  
+  var nome = document.getElementById('nome').value;
+  var cep = document.getElementById('cep').value;
+  var endereco = document.getElementById('endereco').value;
+  var cor = document.getElementById('cor').value;
+  var tamanho = document.getElementById('tamanho').value;
+  var quantidade = parseInt(document.getElementById('quantidade').value);
+  var observacoes = document.getElementById('observacoes').value;
 
- // Pegar valores do formulário
- var nome = document.getElementById('nome').value;
- var cep = document.getElementById('cep').value;
- var endereco = document.getElementById('endereco').value;
- var cor = document.getElementById('cor').value;
- var tamanho = document.getElementById('tamanho').value;
- var quantidade = parseInt(document.getElementById('quantidade').value);
- var observacoes = document.getElementById('observacoes').value;
+  // Preços
+  var precoVarejo = {P: 200, M: 200, G: 350, GG: 350};
+  var precoAtacado = {P: 150, M: 170, G: 180, GG: 180};
 
- // Definir preços
- var precoVarejo = { P: 200, M: 200, G: 350 };
- var precoAtacado = { P: 150, M: 170, G: 180 };
+  var precoUnitario = quantidade >= 6 ? precoAtacado[tamanho] : precoVarejo[tamanho];
+  var precoTotal = precoUnitario * quantidade;
 
- var precoUnitario = 0;
+  var mensagem = `Olá, gostaria de fazer um pedido!\n\nProduto: Mochila de Couro\nCor: ${cor}\nTamanho: ${tamanho}\nQuantidade: ${quantidade}\nValor Unitário: R$ ${precoUnitario}\nValor Total: R$ ${precoTotal}\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
 
- if (quantidade >= 6) {
-   precoUnitario = precoAtacado[tamanho] || 0;
- } else {
-   precoUnitario = precoVarejo[tamanho] || 0;
- }
-
- var total = precoUnitario * quantidade;
-
- // Mensagem para o WhatsApp
- var mensagem = `Olá, gostaria de fazer um pedido!\n\nProduto: Mochila de Couro\nCor: ${cor}\nTamanho: ${tamanho}\nQuantidade: ${quantidade}\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nValor unitário: R$ ${precoUnitario.toFixed(2)}\nValor total: R$ ${total.toFixed(2)}\nObservações: ${observacoes}`;
-
- var url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
- window.open(url, '_blank');
+  var url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
+  window.open(url, '_blank');
 });
 </script>
 
