@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro - Prado Bolsas</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -49,21 +49,11 @@
     button:hover {
       background-color: #3c2619;
     }
-    .link {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .link a {
-      text-decoration: none;
-      color: #5a3825;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Cadastro</h1>
-
     <label for="nome">Nome:</label>
     <input type="text" id="nome" required>
 
@@ -85,11 +75,7 @@
     <label for="complemento">Complemento:</label>
     <input type="text" id="complemento">
 
-    <button onclick="salvarCadastro()">Cadastrar</button>
-
-    <div class="link">
-      <p>Já tem conta? <a href="login.html">Faça login</a></p>
-    </div>
+    <button onclick="salvarCadastro()">Salvar e Ir para o Catálogo</button>
   </div>
 
   <script>
@@ -107,20 +93,21 @@
         return;
       }
 
-      const novoUsuario = { nome, email, senha, cep, endereco, numero, complemento };
+      const cadastro = {
+        nome,
+        email,
+        senha,
+        cep,
+        endereco,
+        numero,
+        complemento
+      };
 
-      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-      const existe = usuarios.some(u => u.email === email);
-      if (existe) {
-        alert("Este e-mail já está cadastrado.");
-        return;
-      }
+      // Salva o cadastro do usuário no localStorage
+      localStorage.setItem('usuarioCadastrado', JSON.stringify(cadastro));
 
-      usuarios.push(novoUsuario);
-      localStorage.setItem('usuarios', JSON.stringify(usuarios));
-      alert("Cadastro realizado com sucesso!");
-
-      window.location.href = "login.html";
+      // Redireciona para a página principal
+      window.location.href = "index.html";
     }
   </script>
 </body>
