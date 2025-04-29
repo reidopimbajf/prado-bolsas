@@ -6,108 +6,108 @@
 <title>Prado Bolsas</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-   body {
-       font-family: 'Poppins', sans-serif;
-       margin: 0;
-       padding: 0;
-       background-color: #fef9f4;
-       color: #3c2c1e;
-   }
-   header {
-       background-color: #5a3825;
-       color: white;
-       padding: 20px;
-       text-align: center;
-   }
-   nav {
-       background-color: #e4cba3;
-       display: flex;
-       justify-content: center;
-       padding: 10px 0;
-   }
-   nav a {
-       color: #5a3825;
-       text-decoration: none;
-       margin: 0 15px;
-       font-weight: 600;
-   }
-   nav a:hover {
-       text-decoration: underline;
-   }
-   section {
-       padding: 30px;
-       text-align: center;
-   }
-   .produtos {
-       display: flex;
-       flex-wrap: wrap;
-       justify-content: center;
-       gap: 20px;
-   }
-   .produto {
-       border: 1px solid #ccc;
-       border-radius: 8px;
-       width: 250px;
-       padding: 15px;
-       background-color: white;
-       box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-       text-align: center;
-   }
-   .produto img {
-       width: 100%;
-       border-radius: 5px;
-   }
-   .produto a {
-       display: inline-block;
-       margin-top: 10px;
-       padding: 8px 12px;
-       background-color: #5a3825;
-       color: white;
-       text-decoration: none;
-       border-radius: 5px;
-       font-weight: bold;
-   }
-   .produto a:hover {
-       background-color: #3c2619;
-   }
-   footer {
-       background-color: #5a3825;
-       color: white;
-       text-align: center;
-       padding: 15px;
-   }
-   .whatsapp-btn {
-       position: fixed;
-       bottom: 20px;
-       right: 20px;
-       background-color: #25D366;
-       color: white;
-       padding: 15px 18px;
-       border-radius: 50%;
-       font-size: 20px;
-       box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-       text-decoration: none;
-       z-index: 1000;
-   }
-   .whatsapp-btn:hover {
-       background-color: #1ebe57;
-   }
-   .login-logout-btn {
-       background-color: #5a3825;
-       color: white;
-       padding: 10px 15px;
-       border-radius: 5px;
-       font-size: 16px;
-       cursor: pointer;
-       text-decoration: none;
-   }
-   .login-logout-btn:hover {
-       background-color: #3c2619;
-   }
+  body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fef9f4;
+      color: #3c2c1e;
+  }
+  header {
+      background-color: #5a3825;
+      color: white;
+      padding: 20px;
+      text-align: center;
+  }
+  nav {
+      background-color: #e4cba3;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+  }
+  nav a {
+      color: #5a3825;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+  }
+  nav a:hover {
+      text-decoration: underline;
+  }
+  section {
+      padding: 30px;
+      text-align: center;
+  }
+  .produtos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+  }
+  .produto {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 250px;
+      padding: 15px;
+      background-color: white;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+  }
+  .produto img {
+      width: 100%;
+      border-radius: 5px;
+  }
+  .produto a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #5a3825;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+  }
+  .produto a:hover {
+      background-color: #3c2619;
+  }
+  footer {
+      background-color: #5a3825;
+      color: white;
+      text-align: center;
+      padding: 15px;
+  }
+  .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 15px 18px;
+      border-radius: 50%;
+      font-size: 20px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      text-decoration: none;
+      z-index: 1000;
+  }
+  .whatsapp-btn:hover {
+      background-color: #1ebe57;
+  }
+  .login-logout-btn {
+      background-color: #5a3825;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  .login-logout-btn:hover {
+      background-color: #3c2619;
+  }
 </style>
 </head>
 <body>
-    <!-- Botão Login/Logout -->
+<!-- Botão Login/Logout -->
 <div id="login-logout">
 <a href="#" id="loginBtn" class="login-logout-btn" onclick="mostrarLogin()">Login</a>
 <a href="#" id="logoutBtn" class="login-logout-btn" onclick="logout()" style="display:none;">Logout</a>
@@ -125,7 +125,7 @@
 <section id="sobre">
 <h2>Sobre Nós</h2>
 <p>Somos a <strong>Prado Bolsas</strong>, uma fábrica localizada em <strong>Nova Soure - BA</strong>, especializada em bolsas, mochilas e acessórios de couro legítimo.
-   Cada peça é feita de forma artesanal, com materiais de alta qualidade e atenção a cada detalhe, garantindo durabilidade, estilo e exclusividade para nossos clientes.</p>
+  Cada peça é feita de forma artesanal, com materiais de alta qualidade e atenção a cada detalhe, garantindo durabilidade, estilo e exclusividade para nossos clientes.</p>
 <p>Atendemos pedidos de todo o <strong>Brasil</strong> com envio rápido e seguro pelos <strong>Correios</strong>. Nosso compromisso é oferecer produtos que unem elegância, resistência e praticidade para acompanhar o seu dia a dia.</p>
 <p>Venha conhecer o nosso trabalho e descubra a diferença de ter um produto feito com amor e excelência!</p>
 </section>
@@ -170,33 +170,32 @@
 <a class="whatsapp-btn" href="https://wa.me/5511975342595?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Prado%20Bolsas" target="_blank">
 &#128222;
 </a>
-
 <script>
-   // Verifica se o usuário está logado
-   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-   // Função para exibir os botões de Login ou Logout
-   function verificarLogin() {
-       const loginBtn = document.getElementById('loginBtn');
-       const logoutBtn = document.getElementById('logoutBtn');
-       if (usuarioLogado) {
-           loginBtn.style.display = 'none';
-           logoutBtn.style.display = 'inline-block';
-       } else {
-           loginBtn.style.display = 'inline-block';
-           logoutBtn.style.display = 'none';
-       }
-   }
-   // Função para fazer logout
-   function logout() {
-       localStorage.removeItem('usuarioLogado');
-       window.location.href = "index.html"; // Redireciona para a página inicial
-   }
-   // Exibe o estado do login ao carregar a página
-   verificarLogin();
-   // Função para redirecionar para a página de login
-   function mostrarLogin() {
-       window.location.href = "login.html"; // Substitua com a página de login
-   }
+  // Redireciona para login se não estiver logado
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+  if (!usuarioLogado) {
+      window.location.href = "login.html";
+  }
+  // Exibe botão correto de login/logout
+  function verificarLogin() {
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (usuarioLogado) {
+          loginBtn.style.display = 'none';
+          logoutBtn.style.display = 'inline-block';
+      } else {
+          loginBtn.style.display = 'inline-block';
+          logoutBtn.style.display = 'none';
+      }
+  }
+  function logout() {
+      localStorage.removeItem('usuarioLogado');
+      window.location.href = "login.html";
+  }
+  function mostrarLogin() {
+      window.location.href = "login.html";
+  }
+  verificarLogin();
 </script>
 </body>
 </html>
