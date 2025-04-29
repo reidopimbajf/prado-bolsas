@@ -59,6 +59,9 @@
     .limpar-carrinho {
       background-color: #f44336;
     }
+    .continuar-comprando {
+      background-color: #bbb;
+    }
   </style>
 </head>
 <body>
@@ -75,6 +78,7 @@
 
     <button onclick="finalizarPedido()">Finalizar Pedido via WhatsApp</button>
     <button class="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
+    <button class="continuar-comprando" onclick="window.location.href='index.html'">Continuar Comprando</button>
   </div>
 
   <script>
@@ -85,7 +89,7 @@
     if (carrinho.length === 0) {
       carrinhoDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
     } else {
-      carrinhoDiv.innerHTML = ''; // Limpa a div antes de renderizar novamente
+      carrinhoDiv.innerHTML = ''; 
       carrinho.forEach((item, index) => {
         carrinhoDiv.innerHTML += `
           <div class="produto">
@@ -119,14 +123,14 @@
     }
 
     function removerProduto(index) {
-      carrinho.splice(index, 1); // Remove o produto do array
-      localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
-      location.reload(); // Recarrega a página para atualizar o carrinho
+      carrinho.splice(index, 1);
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      location.reload();
     }
 
     function limparCarrinho() {
-      localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
-      location.reload(); // Recarrega a página para mostrar carrinho vazio
+      localStorage.removeItem('carrinho');
+      location.reload();
     }
   </script>
 </body>
