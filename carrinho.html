@@ -51,6 +51,14 @@
     button:hover {
       background-color: #3c2619;
     }
+    .remover {
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .limpar-carrinho {
+      background-color: #f44336;
+    }
   </style>
 </head>
 <body>
@@ -66,6 +74,7 @@
     </select>
 
     <button onclick="finalizarPedido()">Finalizar Pedido via WhatsApp</button>
+    <button class="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
   </div>
 
   <script>
@@ -76,14 +85,16 @@
     if (carrinho.length === 0) {
       carrinhoDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
     } else {
-      carrinho.forEach(item => {
+      carrinhoDiv.innerHTML = ''; // Limpa a div antes de renderizar novamente
+      carrinho.forEach((item, index) => {
         carrinhoDiv.innerHTML += `
           <div class="produto">
             <strong>${item.produto}</strong><br/>
             Cor: ${item.cor}<br/>
             Tamanho: ${item.tamanho || '-'}<br/>
             Quantidade: ${item.quantidade}<br/>
-            Valor: R$ ${item.precoTotal}
+            Valor: R$ ${item.precoTotal}<br/>
+            <span class="remover" onclick="removerProduto(${index})">Remover</span>
           </div>
         `;
         total += item.precoTotal;
@@ -105,6 +116,17 @@
       mensagem += `Forma de pagamento: ${formaPagamento}`;
       const url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
       window.open(url, '_blank');
+    }
+
+    function removerProduto(index) {
+      carrinho.splice(index, 1); // Remove o produto do array
+      localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o carrinho no localStorage
+      location.reload(); // Recarrega a página para atualizar o carrinho
+    }
+
+    function limparCarrinho() {
+      localStorage.removeItem('carrinho'); // Remove o carrinho do localStorage
+      location.reload(); // Recarrega a página para mostrar carrinho vazio
     }
   </script>
 </body>
