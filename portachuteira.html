@@ -1,132 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedido de Porta Chuteira - Prado Bolsas</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
-   body {
-     font-family: 'Poppins', sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #fef9f4;
-     color: #3c2c1e;
-   }
-   header {
-     background-color: #5a3825;
-     color: white;
-     padding: 20px;
-     text-align: center;
-   }
-   .container {
-     padding: 30px;
-     max-width: 500px;
-     margin: 0 auto;
-     background: white;
-     border-radius: 8px;
-     box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-     margin-top: 30px;
-   }
-   img {
-     width: 100%;
-     border-radius: 8px;
-     margin-bottom: 20px;
-   }
-   label {
-     display: block;
-     margin: 10px 0 5px;
-     font-weight: 600;
-   }
-   input, select, textarea {
-     width: 100%;
-     padding: 8px;
-     margin-bottom: 15px;
-     border: 1px solid #ccc;
-     border-radius: 4px;
-     font-family: 'Poppins', sans-serif;
-   }
-   button {
-     background-color: #5a3825;
-     color: white;
-     padding: 10px;
-     width: 100%;
-     border: none;
-     border-radius: 4px;
-     font-size: 16px;
-     cursor: pointer;
-   }
-   button:hover {
-     background-color: #3c2619;
-   }
-   a.voltar {
-     display: block;
-     text-align: center;
-     margin-top: 20px;
-     color: #5a3825;
-     text-decoration: none;
-     font-weight: 600;
-   }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - Prado Bolsas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fef9f4;
+      color: #3c2c1e;
+    }
+    header {
+      background-color: #5a3825;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #5a3825;
+      color: white;
+    }
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #5a3825;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 <header>
-<h1>Prado Bolsas</h1>
-<p>Porta Chuteira de Couro - Ideal para os boleiros de plantão!</p>
+  <h1>Prado Bolsas</h1>
+  <p>Lista de Pedidos Realizados</p>
 </header>
+
 <div class="container">
-<img src="https://via.placeholder.com/400x300.png?text=Porta+Chuteira" alt="Porta Chuteira de Couro">
-<form id="pedidoForm">
-<label for="nome">Nome:</label>
-<input type="text" id="nome" required>
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Cor</th>
+        <th>Quantidade</th>
+        <th>Preço Total</th>
+        <th>Nome</th>
+        <th>Endereço</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaPedidos">
+      <!-- Pedidos serão inseridos aqui -->
+    </tbody>
+  </table>
 
-<label for="cep">CEP:</label>
-<input type="text" id="cep" required>
-
-<label for="endereco">Endereço:</label>
-<input type="text" id="endereco" required>
-
-<label for="cor">Cor:</label>
-<select id="cor" required>
-<option value="">Selecione</option>
-<option>Marrom Claro</option>
-<option>Preto</option>
-<option>Marrom Café</option>
-<option>Rosa</option>
-<option>Azul</option>
-</select>
-
-<label for="quantidade">Quantidade:</label>
-<input type="number" id="quantidade" min="1" value="1" required>
-
-<label for="observacoes">Observações:</label>
-<textarea id="observacoes" rows="3"></textarea>
-
-<button type="submit">Enviar Pedido via WhatsApp</button>
-</form>
-<a class="voltar" href="index.html">← Voltar para o Catálogo</a>
+  <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
 </div>
 
 <script>
-document.getElementById('pedidoForm').addEventListener('submit', function(event) {
- event.preventDefault();
- var nome = document.getElementById('nome').value;
- var cep = document.getElementById('cep').value;
- var endereco = document.getElementById('endereco').value;
- var cor = document.getElementById('cor').value;
- var quantidade = parseInt(document.getElementById('quantidade').value);
- var observacoes = document.getElementById('observacoes').value;
+  // Carregar e exibir todos os pedidos armazenados no localStorage
+  var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+  var tabelaPedidos = document.getElementById('tabelaPedidos');
 
- var precoUnitario = 150; // Definindo preço base
- if (quantidade >= 6) {
-   precoUnitario = 120; // Preço para atacado
- }
- var precoTotal = precoUnitario * quantidade;
-
- var mensagem = `Fala boleiro(a)! Vamos proteger suas chuteiras com estilo?\n\nProduto: Porta Chuteira de Couro\nCor: ${cor}\nQuantidade: ${quantidade}\nPreço Unitário: R$ ${precoUnitario},00\nPreço Total: R$ ${precoTotal},00\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
- var url = "https://wa.me/5511934190720?text=" + encodeURIComponent(mensagem);
- window.open(url, '_blank');
-});
+  pedidos.forEach(function(pedido) {
+    var row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${pedido.produto}</td>
+      <td>${pedido.cor}</td>
+      <td>${pedido.quantidade}</td>
+      <td>R$ ${pedido.precoTotal},00</td>
+      <td>${pedido.nome}</td>
+      <td>${pedido.endereco}</td>
+    `;
+    tabelaPedidos.appendChild(row);
+  });
 </script>
 
 </body>
