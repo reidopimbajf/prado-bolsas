@@ -79,9 +79,9 @@
 <form id="pedidoForm">
 <label for="nome">Nome:</label>
 <input type="text" id="nome" required>
-<label for="endereco">Endereço:</label>
 <label for="cep">CEP:</label>
 <input type="text" id="CEP" required>
+<label for="endereco">Endereço:</label>
 <input type="tel" id="Endereço" required>
 <label for="cor">Cor:</label>
 <select id="cor" required>
@@ -112,7 +112,7 @@
 document.getElementById('pedidoForm').addEventListener('submit', function(event) {
  event.preventDefault();
  var nome = document.getElementById('nome').value;
-var cep = document.getElementById('cep').value;
+ var cep = document.getElementById('cep').value;
  var endereco = document.getElementById('endereco').value;
  var cor = document.getElementById('cor').value;
  var tamanho = document.getElementById('tamanho').value;
