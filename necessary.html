@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pedido de Necessary - Prado Bolsas</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
+  <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -87,6 +87,7 @@
 
   <div class="container">
     <img src="fotos/necessary.jpg" alt="Necessary">
+
     <div class="mensagem-atacado">
       Acima de 6 peças o preço é de atacado!
     </div>
@@ -105,8 +106,7 @@
       <select id="cor" required>
         <option value="">Selecione</option>
         <option>Preto</option>
-        <option>Marrom</option>
-        <option>Vermelho</option>
+        <option>Bege</option>
       </select>
 
       <label for="quantidade">Quantidade:</label>
@@ -122,6 +122,17 @@
   </div>
 
   <script>
+    const cadastro = JSON.parse(localStorage.getItem('cadastroCliente'));
+    if (!cadastro) {
+      window.location.href = 'cadastro.html';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('nome').value = cadastro.nome;
+      document.getElementById('cep').value = cadastro.cep;
+      document.getElementById('endereco').value = cadastro.endereco;
+    });
+
     function adicionarAoCarrinho() {
       const nome = document.getElementById('nome').value;
       const cep = document.getElementById('cep').value;
@@ -135,7 +146,13 @@
         return;
       }
 
-      const precoUnitario = quantidade >= 6 ? 80 : 130;
+      let precoUnitario = 0;
+      if (quantidade >= 6) {
+        precoUnitario = 80;
+      } else {
+        precoUnitario = 130;
+      }
+
       const precoTotal = precoUnitario * quantidade;
 
       const item = {
