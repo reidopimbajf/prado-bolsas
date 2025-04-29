@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrinho - Prado Bolsas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fef9f4;
+      padding: 20px;
+      color: #3c2c1e;
+    }
+    h1 {
+      text-align: center;
+    }
+    .carrinho {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+    .produto {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    .produto:last-child {
+      border-bottom: none;
+    }
+    .total {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    select, button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background-color: #5a3825;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #3c2619;
+    }
+  </style>
+</head>
+<body>
+  <h1>Seu Carrinho</h1>
+  <div class="carrinho" id="carrinho"></div>
 
+  <div style="max-width: 700px; margin: 20px auto;">
+    <label for="pagamento">Forma de pagamento:</label>
+    <select id="pagamento">
+      <option value="Pix">Pix</option>
+      <option value="Débito">Débito</option>
+      <option value="Crédito">Crédito</option>
+    </select>
+
+    <button onclick="finalizarPedido()">Finalizar Pedido via WhatsApp</button>
+  </div>
+
+  <script>
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const carrinhoDiv = document.getElementById('carrinho');
+    let total = 0;
+
+    if (carrinho.length === 0) {
+      carrinhoDiv.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    } else {
+      carrinho.forEach(item => {
+        carrinhoDiv.innerHTML += `
+          <div class="produto">
+            <strong>${item.produto}</strong><br/>
+            Cor: ${item.cor}<br/>
+            Tamanho: ${item.tamanho || '-'}<br/>
+            Quantidade: ${item.quantidade}<br/>
+            Valor: R$ ${item.precoTotal}
+          </div>
+        `;
+        total += item.precoTotal;
+      });
+
+      carrinhoDiv.innerHTML += `<div class="total">Total: R$ ${total}</div>`;
+    }
+
+    function finalizarPedido() {
+      const formaPagamento = document.getElementById('pagamento').value;
+      let mensagem = "Olá, gostaria de fazer um pedido!\n\n";
+
+      carrinho.forEach(item => {
+        mensagem += `Produto: ${item.produto}\nCor: ${item.cor}\n`;
+        if (item.tamanho) mensagem += `Tamanho: ${item.tamanho}\n`;
+        mensagem += `Quantidade: ${item.quantidade}\nValor: R$ ${item.precoTotal}\n\n`;
+      });
+
+      mensagem += `Forma de pagamento: ${formaPagamento}`;
+      const url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
