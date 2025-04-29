@@ -105,32 +105,34 @@
 <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
 </div>
 <script>
-   const cadastro = JSON.parse(localStorage.getItem('usuarioLogado'));
+   // Verificando se o cadastro existe
+   const cadastro = JSON.parse(localStorage.getItem('cadastroCliente'));
+   // Caso não exista, redireciona para a página de cadastro
    if (!cadastro) {
-     window.location.href = 'login.html';
+     window.location.href = 'cadastro.html';
    }
+   // Preenchendo os campos com as informações do cadastro
    document.addEventListener("DOMContentLoaded", () => {
      document.getElementById('nome').value = cadastro.nome || '';
      document.getElementById('cep').value = cadastro.cep || '';
      document.getElementById('endereco').value = cadastro.endereco || '';
    });
+   // Função para adicionar ao carrinho
    function adicionarAoCarrinho() {
      const nome = document.getElementById('nome').value;
      const cep = document.getElementById('cep').value;
      const endereco = document.getElementById('endereco').value;
      const quantidade = parseInt(document.getElementById('quantidade').value);
      const observacoes = document.getElementById('observacoes').value;
+     // Validação de campos obrigatórios
      if (!nome || !cep || !endereco || quantidade < 1) {
        alert("Preencha todos os campos corretamente.");
        return;
      }
-     let precoUnitario = 0;
-     if (quantidade >= 6) {
-       precoUnitario = 100;
-     } else {
-       precoUnitario = 130;
-     }
+     // Definindo o preço com base na quantidade
+     let precoUnitario = quantidade >= 6 ? 100 : 130;
      const precoTotal = precoUnitario * quantidade;
+     // Criando o item do pedido
      const item = {
        produto: "Porta Chuteira",
        quantidade,
@@ -140,9 +142,11 @@
        endereco,
        observacoes
      };
+     // Adicionando o item ao carrinho
      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
      carrinho.push(item);
      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+     // Redirecionando para o carrinho
      window.location.href = 'carrinho.html';
    }
 </script>
