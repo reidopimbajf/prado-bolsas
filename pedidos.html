@@ -54,47 +54,4 @@
 <body>
 <header>
   <h1>Prado Bolsas</h1>
-  <p>Lista de Pedidos Realizados</p>
-</header>
-
-<div class="container">
-  <table>
-    <thead>
-      <tr>
-        <th>Produto</th>
-        <th>Cor</th>
-        <th>Quantidade</th>
-        <th>Preço Total</th>
-        <th>Nome</th>
-        <th>Endereço</th>
-      </tr>
-    </thead>
-    <tbody id="tabelaPedidos">
-      <!-- Pedidos serão inseridos aqui -->
-    </tbody>
-  </table>
-
-  <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
-</div>
-
-<script>
-  // Carregar e exibir todos os pedidos armazenados no localStorage
-  var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-  var tabelaPedidos = document.getElementById('tabelaPedidos');
-
-  pedidos.forEach(function(pedido) {
-    var row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${pedido.produto}</td>
-      <td>${pedido.cor}</td>
-      <td>${pedido.quantidade}</td>
-      <td>R$ ${pedido.precoTotal},00</td>
-      <td>${pedido.nome}</td>
-      <td>${pedido.endereco}</td>
-    `;
-    tabelaPedidos.appendChild(row);
-  });
-</script>
-
-</body>
-</html>
+  <p>Lista de Pedidos
