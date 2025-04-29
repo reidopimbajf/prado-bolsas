@@ -72,10 +72,12 @@
 <body>
 <header>
 <h1>Prado Bolsas</h1>
-<p>Porta Chuteira de Couro - Ideal para os boleiros de plantão!</p>
+<p>Pedido de Porta Chuteira</p>
 </header>
+
 <div class="container">
-<img src="https://via.placeholder.com/400x300.png?text=Porta+Chuteira" alt="Porta Chuteira de Couro">
+<img src="fotos/portachuteira.jpg" alt="Porta Chuteira">
+
 <form id="pedidoForm">
 <label for="nome">Nome:</label>
 <input type="text" id="nome" required>
@@ -104,29 +106,32 @@
 
 <button type="submit">Enviar Pedido via WhatsApp</button>
 </form>
+
 <a class="voltar" href="index.html">← Voltar para o Catálogo</a>
 </div>
 
 <script>
 document.getElementById('pedidoForm').addEventListener('submit', function(event) {
- event.preventDefault();
- var nome = document.getElementById('nome').value;
- var cep = document.getElementById('cep').value;
- var endereco = document.getElementById('endereco').value;
- var cor = document.getElementById('cor').value;
- var quantidade = parseInt(document.getElementById('quantidade').value);
- var observacoes = document.getElementById('observacoes').value;
+  event.preventDefault();
+  
+  var nome = document.getElementById('nome').value;
+  var cep = document.getElementById('cep').value;
+  var endereco = document.getElementById('endereco').value;
+  var cor = document.getElementById('cor').value;
+  var quantidade = parseInt(document.getElementById('quantidade').value);
+  var observacoes = document.getElementById('observacoes').value;
 
- var precoUnitario = 150; // Definindo preço base
- if (quantidade >= 6) {
-   precoUnitario = 120; // Preço para atacado
- }
- var precoTotal = precoUnitario * quantidade;
+  // Preços
+  var precoVarejo = 130;
+  var precoAtacado = 85;
 
- var mensagem = `
- (a)! Vamos proteger suas chuteiras com estilo?\n\nProduto: Porta Chuteira de Couro\nCor: ${cor}\nQuantidade: ${quantidade}\nPreço Unitário: R$ ${precoUnitario},00\nPreço Total: R$ ${precoTotal},00\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
- var url = "https://wa.me/5511934190720?text=" + encodeURIComponent(mensagem);
- window.open(url, '_blank');
+  var precoUnitario = quantidade >= 6 ? precoAtacado : precoVarejo;
+  var precoTotal = precoUnitario * quantidade;
+
+  var mensagem = `Olá, gostaria de fazer um pedido!\n\nProduto: Porta Chuteira\nCor: ${cor}\nQuantidade: ${quantidade}\nValor Unitário: R$ ${precoUnitario}\nValor Total: R$ ${precoTotal}\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
+
+  var url = "https://wa.me/5511975342595?text=" + encodeURIComponent(mensagem);
+  window.open(url, '_blank');
 });
 </script>
 
