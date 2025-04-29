@@ -123,7 +123,8 @@ document.getElementById('pedidoForm').addEventListener('submit', function(event)
  }
  var precoTotal = precoUnitario * quantidade;
 
- var mensagem = `Fala boleiro(a)! Vamos proteger suas chuteiras com estilo?\n\nProduto: Porta Chuteira de Couro\nCor: ${cor}\nQuantidade: ${quantidade}\nPreço Unitário: R$ ${precoUnitario},00\nPreço Total: R$ ${precoTotal},00\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
+ var mensagem = `
+ (a)! Vamos proteger suas chuteiras com estilo?\n\nProduto: Porta Chuteira de Couro\nCor: ${cor}\nQuantidade: ${quantidade}\nPreço Unitário: R$ ${precoUnitario},00\nPreço Total: R$ ${precoTotal},00\n\nNome: ${nome}\nCEP: ${cep}\nEndereço: ${endereco}\nObservações: ${observacoes}`;
  var url = "https://wa.me/5511934190720?text=" + encodeURIComponent(mensagem);
  window.open(url, '_blank');
 });
