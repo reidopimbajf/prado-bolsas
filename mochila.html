@@ -67,6 +67,13 @@
      text-decoration: none;
      font-weight: 600;
    }
+   .aviso {
+     background-color: #fff5e6;
+     padding: 12px;
+     border-left: 4px solid #d58b00;
+     margin-bottom: 20px;
+     border-radius: 4px;
+   }
 </style>
 </head>
 <body>
@@ -77,6 +84,10 @@
 
 <div class="container">
 <img src="fotos/mochila.jpg" alt="Mochila de Couro">
+
+<p class="aviso">
+  <strong>Importante:</strong> acima de <strong>6 peças</strong>, o valor será calculado com <strong>preço de atacado</strong> automaticamente.
+</p>
 
 <form id="pedidoForm">
 <label for="nome">Nome:</label>
@@ -131,7 +142,6 @@ document.getElementById('pedidoForm').addEventListener('submit', function(event)
   var quantidade = parseInt(document.getElementById('quantidade').value);
   var observacoes = document.getElementById('observacoes').value;
 
-  // Preços
   var precoVarejo = {P: 200, M: 200, G: 350, GG: 350};
   var precoAtacado = {P: 150, M: 170, G: 180, GG: 180};
 
