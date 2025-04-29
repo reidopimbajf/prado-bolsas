@@ -102,14 +102,6 @@
       <label for="endereco">Endereço:</label>
       <input type="text" id="endereco" required>
 
-      <label for="cor">Cor:</label>
-      <select id="cor" required>
-        <option value="">Selecione</option>
-        <option>Preto</option>
-        <option>Marrom</option>
-        <option>Azul</option>
-      </select>
-
       <label for="quantidade">Quantidade:</label>
       <input type="number" id="quantidade" min="1" value="1" required>
 
@@ -123,25 +115,40 @@
   </div>
 
   <script>
+    const cadastro = JSON.parse(localStorage.getItem('cadastroCliente'));
+    if (!cadastro) {
+      window.location.href = 'cadastro.html';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('nome').value = cadastro.nome;
+      document.getElementById('cep').value = cadastro.cep;
+      document.getElementById('endereco').value = cadastro.endereco;
+    });
+
     function adicionarAoCarrinho() {
       const nome = document.getElementById('nome').value;
       const cep = document.getElementById('cep').value;
       const endereco = document.getElementById('endereco').value;
-      const cor = document.getElementById('cor').value;
       const quantidade = parseInt(document.getElementById('quantidade').value);
       const observacoes = document.getElementById('observacoes').value;
 
-      if (!nome || !cep || !endereco || !cor || quantidade < 1) {
+      if (!nome || !cep || !endereco || quantidade < 1) {
         alert("Preencha todos os campos corretamente.");
         return;
       }
 
-      const precoUnitario = quantidade >= 6 ? 100 : 130;
+      let precoUnitario = 0;
+      if (quantidade >= 6) {
+        precoUnitario = 100;
+      } else {
+        precoUnitario = 130;
+      }
+
       const precoTotal = precoUnitario * quantidade;
 
       const item = {
         produto: "Porta Chuteira",
-        cor,
         quantidade,
         precoTotal,
         nome,
