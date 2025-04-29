@@ -9,40 +9,42 @@
    body {
      font-family: 'Poppins', sans-serif;
      background-color: #fef9f4;
-     margin: 0;
-     padding: 0;
      color: #3c2c1e;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
    }
    .container {
-     max-width: 400px;
-     margin: 60px auto;
+     background: white;
      padding: 30px;
-     background-color: white;
      border-radius: 8px;
      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+     max-width: 400px;
+     width: 100%;
    }
    h2 {
      text-align: center;
      margin-bottom: 20px;
    }
    label {
-     font-weight: 600;
      display: block;
-     margin-top: 10px;
+     margin: 10px 0 5px;
+     font-weight: 600;
    }
    input {
      width: 100%;
      padding: 8px;
-     margin-top: 5px;
+     margin-bottom: 15px;
      border: 1px solid #ccc;
      border-radius: 4px;
+     font-family: 'Poppins', sans-serif;
    }
    button {
-     width: 100%;
-     padding: 10px;
-     margin-top: 20px;
      background-color: #5a3825;
      color: white;
+     padding: 10px;
+     width: 100%;
      border: none;
      border-radius: 4px;
      font-size: 16px;
@@ -51,13 +53,14 @@
    button:hover {
      background-color: #3c2619;
    }
-   .voltar {
-     display: block;
+   .link {
      text-align: center;
      margin-top: 15px;
-     text-decoration: none;
+   }
+   .link a {
      color: #5a3825;
-     font-weight: bold;
+     text-decoration: none;
+     font-weight: 600;
    }
 </style>
 </head>
@@ -67,36 +70,29 @@
 <form id="cadastroForm">
 <label for="nome">Nome:</label>
 <input type="text" id="nome" required>
-<label for="whatsapp">WhatsApp:</label>
-<input type="text" id="whatsapp" required>
-<label for="cep">CEP:</label>
-<input type="text" id="cep" required>
-<label for="endereco">Endereço:</label>
-<input type="text" id="endereco" required>
-<label for="numero">Número:</label>
-<input type="text" id="numero" required>
-<label for="complemento">Complemento:</label>
-<input type="text" id="complemento">
+<label for="email">Email:</label>
+<input type="email" id="email" required>
 <label for="senha">Senha:</label>
 <input type="password" id="senha" required>
 <button type="submit">Cadastrar</button>
 </form>
-<a class="voltar" href="login.html">Já tenho conta</a>
+<div class="link">
+<p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+</div>
 </div>
 <script>
    document.getElementById('cadastroForm').addEventListener('submit', function(e) {
      e.preventDefault();
+     const nome = document.getElementById('nome').value;
+     const email = document.getElementById('email').value;
+     const senha = document.getElementById('senha').value;
      const usuario = {
-       nome: document.getElementById('nome').value,
-       whatsapp: document.getElementById('whatsapp').value,
-       cep: document.getElementById('cep').value,
-       endereco: document.getElementById('endereco').value,
-       numero: document.getElementById('numero').value,
-       complemento: document.getElementById('complemento').value,
-       senha: document.getElementById('senha').value
+       nome: nome,
+       email: email,
+       senha: senha
      };
-     localStorage.setItem('cadastro_' + usuario.whatsapp, JSON.stringify(usuario));
-     alert("Cadastro realizado com sucesso!");
+     localStorage.setItem('usuarioCadastrado', JSON.stringify(usuario));
+     alert('Cadastro realizado com sucesso!');
      window.location.href = 'login.html';
    });
 </script>
